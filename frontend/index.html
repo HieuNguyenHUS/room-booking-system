@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Lịch Học Phòng - Database</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📅 ĐĂNG KÝ LỊCH HỌC PHÒNG</h1>
+        
+        <div class="week-info">
+            <span>🗓️ Tuần hiện tại: <span id="current-week">Loading...</span></span>
+            <button class="btn-refresh" onclick="loadBookings()">🔄 Tải lại</button>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box available"></div>
+                <span>Trống</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box booked"></div>
+                <span>Đã đặt</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box selected-slot"></div>
+                <span>Đang chọn</span>
+            </div>
+        </div>
+        
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Giờ</th>
+                    <th>Thứ 2</th>
+                    <th>Thứ 3</th>
+                    <th>Thứ 4</th>
+                    <th>Thứ 5</th>
+                    <th>Thứ 6</th>
+                    <th>Thứ 7</th>
+                    <th>Chủ nhật</th>
+                </tr>
+            </thead>
+            <tbody id="schedule-body">
+                <tr>
+                    <td colspan="8" style="text-align: center; padding: 20px;">
+                        <div class="loading">📊 Đang tải dữ liệu...</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="form-section">
+            <h3>📝 Thông tin đăng ký:</h3>
+            <form id="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="student-name">Họ và tên:</label>
+                        <input type="text" id="student-name" placeholder="Nhập họ và tên" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại:</label>
+                        <input type="tel" id="phone" placeholder="Nhập số điện thoại" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="selected-day">Ngày đã chọn:</label>
+                        <input type="text" id="selected-day" readonly placeholder="Chọn ngày từ lịch" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="selected-time">Giờ đã chọn:</label>
+                        <input type="text" id="selected-time" readonly placeholder="Chọn giờ từ lịch" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Ghi chú:</label>
+                    <input type="text" id="notes" placeholder="Ghi chú thêm (nếu có)">
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">📝 Đăng ký</button>
+                    <button type="button" class="btn btn-danger" onclick="resetWeek()">🔄 Reset tuần mới</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="stats">
+            <span>📊 Thống kê: </span>
+            <span id="total-slots">0</span> slot tổng | 
+            <span id="booked-slots">0</span> đã đặt | 
+            <span id="available-slots">0</span> còn trống
+        </div>
+        
+        <div class="footer">
+            <p>💾 Dữ liệu được lưu trữ an toàn trong database</p>
+            <p>🔄 Tự động reset vào Thứ 2 hàng tuần</p>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Đang xử lý...</p>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
