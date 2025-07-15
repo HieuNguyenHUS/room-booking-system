@@ -1,0 +1,28 @@
+{
+  "name": "room-booking-system",
+  "version": "1.0.0",
+  "description": "Hệ thống đăng ký lịch học phòng",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "init-db": "node backend/database/init.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "room-booking",
+    "schedule",
+    "nodejs",
+    "sqlite"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
